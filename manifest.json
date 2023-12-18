@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "1Click Text Highlighter & Marker 2.0.1",
+  "version": "2.0.1",
+  "description": "Marks text with a click or selection. Simply press Alt or Option to activate. Easy to use.",
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "settings_and_onboarding/settings0_main.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true
+    }
+  ],
+  "icons": {
+    "16": "highlight16.png",
+    "48": "highlight48.png",
+    "128": "highlight128.png"
+  }
+}

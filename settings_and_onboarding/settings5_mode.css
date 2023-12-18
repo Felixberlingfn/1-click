@@ -1,0 +1,92 @@
+.mode-selection {
+	display: flex;
+	gap: 6px;  /* gap between keys */
+}
+
+.selected_link {
+	border-color: #007aff;
+	border-style:solid;
+	border-width:2px;
+}
+
+.btn-mode_toggle {
+    align-items: center; /* Replaced 'align' to correctly center content */
+    justify-content: center; /* Replaced 'vertical-align' to correctly center content */
+    background-color: white;
+    height: 30px;
+
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    display: flex; /* Added to make align-items and justify-content work */
+}
+
+.btn-mode_toggle.selected_mode {
+	background-color: #cce4ff;  /* Light blue background */
+	border-color: #007aff;  /* Blue border */
+	box-shadow: 0 0 0 2px #007aff;  /* Blue glowing effect */
+}
+
+.btn-mode_toggle.word {
+	width: 140px;
+}
+
+.btn-mode_toggle.phrase {
+	width: 340px;
+}
+
+mark {
+    background-color: gold;
+    color: black;
+}
+
+.btn-toggle_button {
+    text-align: center;
+    vertical-align: center;
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    color: black;
+    font-size: 12px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/*-------------- key old -----------*/
+
+.key_blue {
+	background-color: #ffffff;
+	border: #d0d0d0;
+	cursor: pointer;
+}
+
+.selected_key_old {
+	background-color: #cce4ff;  /* Light blue background */
+	border-color: #007aff;  /* Blue border */
+	box-shadow: 0 0 0 2px #007aff;  /* Blue glowing effect */
+}
+
+
+
+.key_blue.no-modifier {
+	color: red;
+}
+
+.key_blue:hover {
+	background-color: #e0e0e0;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.key_blue:active {
+	background-color: #d0d0d0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transform: translateY(1px);
+}
+.key_blue.active {
+	background-color: #cce4ff;  /* Light blue background */
+	border-color: #007aff;  /* Blue border */
+	box-shadow: 0 0 0 2px #007aff;  /* Blue glowing effect */
+}

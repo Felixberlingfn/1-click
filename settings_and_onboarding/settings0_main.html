@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Click Text Marker</title>
+    <link rel="stylesheet" href="settings0_main.css"> <!-- styles -->
+</head>
+<body>
+
+<!------------------------ Begin Tabs --------------->
+<div class="tabs">
+    <ul class="tab-list">
+        <li class="tab active" data-tab="settings1_modifier" >How to Highlight</li>
+        <li class="tab" data-tab="settings2_background" >Backgorund Color</li>
+        <li class="tab" data-tab="settings3_text" >Text Color</li>
+		<li class="tab" data-tab="settings4_link" >Link Color</li>
+		<li class="tab" data-tab="settings5_mode" >Modes</li>
+    </ul>
+</div>
+<br>
+<!---------------------- End Tabs -------------------->
+
+<div id="onboarding-steps">
+<!-- main content -->
+
+	<!-- title and more -->
+	<div style="height:55px;overflow:hidden;">
+	
+	<div class="centered adjustable_color" id="confirm_finished_onboarding" style="display:none;text-align:center;">
+		<h1>&nbsp; You're all set for now! &#127752; <span style="font-size:18px">Pin the extension for easy access. </span> &nbsp;</h1>
+	</div>
+	
+	<div class="centered adjustable_color" id="title_for_new_users" style="text-align:center;">
+		<h1> &nbsp; Welcome! &#127752; <span style="font-size:18px"><a href="?s=settings2_background">Choose your colors</a> or <a href="https://randomincategory.toolforge.org/Featured_articles?site=en.wikipedia.org" target="blank" style="">start highlighting now</a>. &nbsp; </span></h1>
+	</div>
+	
+	<div class="centered adjustable_color" id="title_for_existing_users" style="text-align:center;">
+		<h1> &nbsp; This is how the highlight will look! &#127752; <a href="https://randomincategory.toolforge.org/Featured_articles?site=en.wikipedia.org" target="blank" style="">Try it now</a> &nbsp;</h1>
+	</div>
+	
+
+	
+	</div>
+	
+	<!-- container to ensure same size and smooth fading -->
+	<div class="container">
+		<!-- Step 1: Modifier Key -->
+		<div class="step animated-block" id="settings1_modifier">
+			<!-- Insert your HTML for the modifier key setting here -->
+		</div>
+
+		<!-- Step 2: Background Color -->
+		<div class="step animated-block" id="settings2_background">
+			<!-- Insert your HTML for the background color setting here -->
+		</div>
+
+		<!-- Step 3: Text Color -->
+		<div class="step animated-block" id="settings3_text">
+			<!-- Insert your HTML for the text color setting here -->
+		</div>
+
+		<!-- Step 4: Link Color -->
+		<div class="step animated-block" id="settings4_link">
+			<!-- Insert your HTML for the link color setting here -->
+		</div>
+
+		<!-- Step 5: Word or Phrase Mode -->
+		<div class="step animated-block" id="settings5_mode">
+			<!-- Insert your HTML for word/phrase mode setting here -->
+		</div>
+		
+		<!-- Confirm saved setting -->
+		<div class="step animated-block" id="settings_confirmation" style="font-size:50px;text-align:center;">
+			&#10004; saved
+		</div>
+	</div>
+	<!-- End of container to make them same size -->
+	
+	<!-- Previous Skip Next Navigation -->
+	<div class="next animated-block" id="prevnext">
+		<button id="prev-btn" class="btn" style="display:;">Previous</button> &nbsp; 
+		<button id="skip-btn" class="btn" style="display:;">Skip (Use Default)</button>  &nbsp; 
+		<button id="next-btn" class="btn" style="display:;">Next</button>
+		<br>
+	</div>
+	
+	<!-- Final Step: Pin Extension Instruction -->
+	<div class="step" id="settings6_pin">
+		<!-- Insert your HTML to guide the user on how to pin the extension -->
+	</div>
+	
+	<!-- The rest -->
+	<div class="rest" id="settings7_rest">
+	<!-- This function is currently deactivated because it looks bad showing all settings at once-->
+		<button id="skip_intro_button" class="btn" style="display: none;">Skip Intro</button>
+	</div>
+	
+<!-- End of main content -->	
+</div>
+
+<script src="settings0_forall.js"></script>
+<script src="settings0_main.js"></script>
+<script src="settings1_modifier.js"></script>
+<script src="settings2_background.js"></script>
+<script src="settings3_text.js"></script>
+<script src="settings4_link.js"></script>
+<script src="settings5_mode.js"></script>
+<!--<script src="settings6_pin.js"></script>-->
+</body>
+</html>

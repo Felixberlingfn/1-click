@@ -1,0 +1,579 @@
+<html lang="en">
+  <head>
+    <style>
+		body {
+			background-color:WhiteSmoke;
+			padding-top:0px;
+			margin-top:0px;
+		}
+		.cell {
+			width: 30px;
+			height: 30px;
+			cursor: pointer;
+			border-style:solid;
+			border-width:2px;
+			border-color:WhiteSmoke;
+			
+			font-size:16px;
+			text-align:center;
+			vertical-align:middle;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		.color-cell {
+			font-weight: bold;
+		}
+		.color-txt {
+			font-weight: bold;
+		}
+		.color-link {
+			font-weight: bold;
+		}
+
+	  h3 {
+	  background-color:yellow;
+	  margin-bottom:0;
+	  padding-bottom:0;
+	  font-size: 16px;
+	  }
+	  .selected_bg {
+	  border-color: #007aff;
+	  border-style:solid;
+	  border-width:2px;
+	  }
+
+	  .selected_txt {
+	  border-color: #007aff;
+	  border-style:solid;
+	  border-width:2px;
+	  }
+	  
+	  .selected_link {
+	  border-color: #007aff;
+	  border-style:solid;
+	  border-width:2px;
+	  }
+
+	  table {
+	  border-collapse: collapse;
+	  border-spacing:0;
+	  	     padding: 0;
+		 margin: 0;
+	  }
+	  td {
+	     padding: 0;
+		 margin: 0;
+	  }
+	  /* Link styles */
+	a {
+		color: darkslategrey; /* dark greyish-blue */
+		text-decoration: none; /* no underline */
+		transition: color 0.3s ease; /* smooth color transition */
+	}
+
+	a:hover {
+		color: teal; /* brighter greyish-blue on hover */
+	}
+    </style>
+	<style>
+
+        .keyboard-selection {
+            display: flex;
+            gap: 6px;  /* Reduced gap between keys */
+        }
+
+        .key {
+            background-color: #ffffff;
+            padding: 6px 12px;  /* Reduced padding to make the keys smaller */
+            border: 1px solid #d0d0d0;  /* Reduced border thickness */
+            border-radius: 4px;  /* Adjusted the border-radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;  /* Reduced font size */
+        }
+
+        .key.no-modifier {
+            color: red;
+        }
+
+        .key:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .key:active {
+            background-color: #d0d0d0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transform: translateY(1px);
+        }
+		.key.selected_key {
+            background-color: #cce4ff;  /* Light blue background */
+            border-color: #007aff;  /* Blue border */
+            box-shadow: 0 0 0 2px #007aff;  /* Blue glowing effect */
+        }
+    </style>
+	<style id="setting_styles">
+		.color_category{
+			color:black;
+		}
+	</style>
+  </head>
+  <body style="margin: 0px; padding: 0px;">
+  <h3 id="extension_title" style="margin-bottom:5px;padding-left:10px;padding-top:10px;padding-bottom:10px;">1 Click Text Marker Settings</h3>
+    <div id="color_picker" class="color-table" style="margin-left:10px;margin-top:0px;padding:0px;">
+
+	<!-- change highlighting color -->
+<table style="border-collapse:collapse;margin:0px;" id="color_box_selection">
+	<tr>
+		<td colspan="7" style="color:black"><b>Choose a highlighting key:</b></td>
+		<td colspan="3"><span id="key_message" style="color:darkgreen; font-size:10px;visibility:;">* Alt, 1, C, T or M</span><span id="key_warning" style="color:crimson; font-size:10px;display:none;">* no key required</span></td>
+	</tr>
+	<tr>
+	<td colspan="10" style="height:60px" >
+	    <div class="keyboard-selection" id="modifier_selector">
+			<button class="key" id="Alt_key" data-key="Alt">Alt</button>
+			<button class="key" id="1_key" data-key="1">1</button>
+			<button class="key" id="c_key" data-key="c">C</button>
+			<button class="key" id="t_key" data-key="t">T</button>
+			<button class="key" id="m_key" data-key="m">M</button>
+			<button class="key selected_key" id="any_key" data-key="any">Any</button>
+			<button class="key no-modifier" id="false_key" data-key="none">none</button>
+		</div>
+	</td>
+	</tr>
+	<tr><td colspan="15"><span style="color:black"><h4>Choose a highlighting color:</h4></span></td></tr>
+	
+
+<tr>
+<td colspan="4" class="color_category">Pink Colors:</td>
+<td><div class="color-cell cell" style="background-color:Pink" title="Pink" id="">B</div></td>
+<td><div class="color-cell cell" style="background-color:LightPink" title="LightPink" id="">L</div></td>
+<td><div class="color-cell cell" style="background-color:HotPink" title="HotPink" id="">U</div></td>
+<td><div class="color-cell cell" style="background-color:DeepPink" title="DeepPink" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:PaleVioletRed" title="PaleVioletRed" id="">H</div></td>
+<td><div class="color-cell cell" style="background-color:MediumVioletRed" title="MediumVioletRed" id="">Y</div></td>
+</tr>
+
+
+<tr>
+<td colspan="4" class="color_category">Purple Colors:</td>
+<td><div class="color-cell cell" style="background-color:Lavender" title="Lavender" id="">W</div></td>
+<td><div class="color-cell cell" style="background-color:Thistle" title="Thistle" id="">I</div></td>
+<td><div class="color-cell cell" style="background-color:Plum" title="Plum" id="">L</div></td>
+<td><div class="color-cell cell" style="background-color:Orchid" title="Orchid" id="">D</div></td>
+<td><div class="color-cell cell" style="background-color:Violet" title="Violet" id="">#</div></td>
+<td><div class="color-cell cell" style="background-color:Fuchsia" title="Fuchsia" id="">B</div></td>
+<td><div class="color-cell cell" style="background-color:Magenta" title="Magenta" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:MediumOrchid" title="MediumOrchid" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:DarkOrchid" title="DarkOrchid" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:DarkViolet" title="DarkViolet" id="">Y</div></td>
+<td><div class="color-cell cell" style="background-color:BlueViolet" title="BlueViolet" id="">#</div></td>
+<td><div class="color-cell cell" style="background-color:DarkMagenta" title="DarkMagenta" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:Purple" title="Purple" id="">M</div></td>
+<td><div class="color-cell cell" style="background-color:MediumPurple" title="MediumPurple" id="">O</div></td>
+<td><div class="color-cell cell" style="background-color:MediumSlateBlue" title="MediumSlateBlue" id="">O</div></td>
+<td><div class="color-cell cell" style="background-color:SlateBlue" title="SlateBlue" id="">T</div></td>
+<td><div class="color-cell cell" style="background-color:DarkSlateBlue" title="DarkSlateBlue" id="">I</div></td>
+<td><div class="color-cell cell" style="background-color:RebeccaPurple" title="RebeccaPurple" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:Indigo" title="Indigo" id="">#</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Red Colors:</td>
+<td><div class="color-cell cell" style="background-color:LightSalmon" title="LightSalmon" id="">C</div></td>
+<td><div class="color-cell cell" style="background-color:Salmon" title="Salmon" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:DarkSalmon" title="DarkSalmon" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LightCoral" title="LightCoral" id="">N</div></td>
+<td><div class="color-cell cell" style="background-color:IndianRed" title="IndianRed" id="">B</div></td>
+<td><div class="color-cell cell" style="background-color:Crimson" title="Crimson" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:Red" title="Red" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:FireBrick" title="FireBrick" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:DarkRed" title="DarkRed" id="">Y</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Orange Colors:</td>
+<td><div class="color-cell cell" style="background-color:Orange" title="Orange" id="">P</div></td>
+<td><div class="color-cell cell" style="background-color:DarkOrange" title="DarkOrange" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:Coral" title="Coral" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Tomato" title="Tomato" id="">C</div></td>
+<td><div class="color-cell cell" style="background-color:OrangeRed" title="OrangeRed" id="">H</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Yellow Colors:</td>
+<td><div class="color-cell cell" style="background-color:Gold" title="Gold" id="">L</div></td>
+<td><div class="color-cell cell" style="background-color:Yellow" title="Yellow" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:LightYellow" title="LightYellow" id="">M</div></td>
+<td><div class="color-cell cell" style="background-color:LemonChiffon" title="LemonChiffon" id="">O</div></td>
+<td><div class="color-cell cell" style="background-color:LightGoldenRodYellow" title="LightGoldenRodYellow" id="">N</div></td>
+<td><div class="color-cell cell" style="background-color:PapayaWhip" title="PapayaWhip" id="">B</div></td>
+<td><div class="color-cell cell" style="background-color:Moccasin" title="Moccasin" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:PeachPuff" title="PeachPuff" id="">I</div></td>
+<td><div class="color-cell cell" style="background-color:PaleGoldenRod" title="PaleGoldenRod" id="">G</div></td>
+<td><div class="color-cell cell" style="background-color:Khaki" title="Khaki" id="">H</div></td>
+<td><div class="color-cell cell" style="background-color:DarkKhaki" title="DarkKhaki" id="">T</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Green Colors:</td>
+<td><div class="color-cell cell" style="background-color:GreenYellow" title="GreenYellow" id="">M</div></td>
+<td><div class="color-cell cell" style="background-color:Chartreuse" title="Chartreuse" id="">O</div></td>
+<td><div class="color-cell cell" style="background-color:LawnGreen" title="LawnGreen" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:Lime" title="Lime" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:LimeGreen" title="LimeGreen" id="">Y</div></td>
+<td><div class="color-cell cell" style="background-color:PaleGreen" title="PaleGreen" id="">#</div></td>
+<td><div class="color-cell cell" style="background-color:LightGreen" title="LightGreen" id="">F</div></td>
+<td><div class="color-cell cell" style="background-color:MediumSpringGreen" title="MediumSpringGreen" id="">O</div></td>
+<td><div class="color-cell cell" style="background-color:SpringGreen" title="SpringGreen" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:MediumSeaGreen" title="MediumSeaGreen" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:SeaGreen" title="SeaGreen" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:ForestGreen" title="ForestGreen" id="">T</div></td>
+<td><div class="color-cell cell" style="background-color:Green" title="Green" id="">#</div></td>
+<td><div class="color-cell cell" style="background-color:DarkGreen" title="DarkGreen" id="">G</div></td>
+<td><div class="color-cell cell" style="background-color:YellowGreen" title="YellowGreen" id="">R</div></td>
+<td><div class="color-cell cell" style="background-color:OliveDrab" title="OliveDrab" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DarkOliveGreen" title="DarkOliveGreen" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:MediumAquaMarine" title="MediumAquaMarine" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:DarkSeaGreen" title="DarkSeaGreen" id="">#</div></td>
+<td><div class="color-cell cell" style="background-color:LightSeaGreen" title="LightSeaGreen" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:DarkCyan" title="DarkCyan" id="">E</div></td>
+<td><div class="color-cell cell" style="background-color:Teal" title="Teal" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Cyan Colors:</td>
+<td><div class="color-cell cell" style="background-color:Aqua" title="Aqua" id="">S</div></td>
+<td><div class="color-cell cell" style="background-color:Cyan" title="Cyan" id="">K</div></td>
+<td><div class="color-cell cell" style="background-color:LightCyan" title="LightCyan" id="">Y</div></td>
+<td><div class="color-cell cell" style="background-color:PaleTurquoise" title="PaleTurquoise" id="">#</div></td>
+<td><div class="color-cell cell" style="background-color:Aquamarine" title="Aquamarine" id="">D</div></td>
+<td><div class="color-cell cell" style="background-color:Turquoise" title="Turquoise" id="">I</div></td>
+<td><div class="color-cell cell" style="background-color:MediumTurquoise" title="MediumTurquoise" id="">V</div></td>
+<td><div class="color-cell cell" style="background-color:DarkTurquoise" title="DarkTurquoise" id="">E</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Blue Colors:</td>
+<td><div class="color-cell cell" style="background-color:CadetBlue" title="CadetBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:SteelBlue" title="SteelBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LightSteelBlue" title="LightSteelBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LightBlue" title="LightBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:PowderBlue" title="PowderBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LightSkyBlue" title="LightSkyBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:SkyBlue" title="SkyBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:CornflowerBlue" title="CornflowerBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DeepSkyBlue" title="DeepSkyBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DodgerBlue" title="DodgerBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:RoyalBlue" title="RoyalBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Blue" title="Blue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:MediumBlue" title="MediumBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DarkBlue" title="DarkBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Navy" title="Navy" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:MidnightBlue" title="MidnightBlue" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Brown Colors:</td>
+<td><div class="color-cell cell" style="background-color:Cornsilk" title="Cornsilk" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:BlanchedAlmond" title="BlanchedAlmond" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Bisque" title="Bisque" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:NavajoWhite" title="NavajoWhite" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Wheat" title="Wheat" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:BurlyWood" title="BurlyWood" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Tan" title="Tan" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:RosyBrown" title="RosyBrown" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:SandyBrown" title="SandyBrown" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:GoldenRod" title="GoldenRod" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DarkGoldenRod" title="DarkGoldenRod" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Peru" title="Peru" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Chocolate" title="Chocolate" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Olive" title="Olive" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:SaddleBrown" title="SaddleBrown" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Sienna" title="Sienna" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Brown" title="Brown" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Maroon" title="Maroon" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">White Colors:</td>
+<td><div class="color-cell cell" style="background-color:White" title="White" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Snow" title="Snow" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:HoneyDew" title="HoneyDew" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:MintCream" title="MintCream" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Azure" title="Azure" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:AliceBlue" title="AliceBlue" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:GhostWhite" title="GhostWhite" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:WhiteSmoke" title="WhiteSmoke" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:SeaShell" title="SeaShell" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Beige" title="Beige" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:OldLace" title="OldLace" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:FloralWhite" title="FloralWhite" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Ivory" title="Ivory" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:AntiqueWhite" title="AntiqueWhite" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Linen" title="Linen" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LavenderBlush" title="LavenderBlush" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:MistyRose" title="MistyRose" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Grey Colors</td>
+<td><div class="color-cell cell" style="background-color:Gainsboro" title="Gainsboro" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LightGray" title="LightGray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Silver" title="Silver" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DarkGray" title="DarkGray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DimGray" title="DimGray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Gray" title="Gray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:LightSlateGray" title="LightSlateGray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:SlateGray" title="SlateGray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:DarkSlateGray" title="DarkSlateGray" id="">A</div></td>
+<td><div class="color-cell cell" style="background-color:Black" title="Black" id="">A</div></td>
+</tr>
+</table>
+</div>
+
+
+
+<br>
+<div id="txt_picker" class="color-table" style="margin-left:10px;margin-top:0px;padding:0px;">
+<table style="margin-top:0px;">
+
+
+<tr><td colspan="20" style="width:170px;"><h4>Choose a text color:</h4></td></tr>
+
+
+<tr>
+<td colspan="4" class="color_category">Pink Colors:</td>
+<td><div class="color-txt cell" style="color:Pink" title="Pink" id="">B</div></td>
+<td><div class="color-txt cell" style="color:LightPink" title="LightPink" id="">L</div></td>
+<td><div class="color-txt cell" style="color:HotPink" title="HotPink" id="">U</div></td>
+<td><div class="color-txt cell" style="color:DeepPink" title="DeepPink" id="">S</div></td>
+<td><div class="color-txt cell" style="color:PaleVioletRed" title="PaleVioletRed" id="">H</div></td>
+<td><div class="color-txt cell" style="color:MediumVioletRed" title="MediumVioletRed" id="">Y</div></td>
+</tr>
+
+
+<tr>
+<td colspan="4" class="color_category">Purple Colors:</td>
+<td><div class="color-txt cell" style="color:Lavender" title="Lavender" id="">W</div></td>
+<td><div class="color-txt cell" style="color:Thistle" title="Thistle" id="">I</div></td>
+<td><div class="color-txt cell" style="color:Plum" title="Plum" id="">L</div></td>
+<td><div class="color-txt cell" style="color:Orchid" title="Orchid" id="">D</div></td>
+<td><div class="color-txt cell" style="color:Violet" title="Violet" id="">#</div></td>
+<td><div class="color-txt cell" style="color:Fuchsia" title="Fuchsia" id="">B</div></td>
+<td><div class="color-txt cell" style="color:Magenta" title="Magenta" id="">E</div></td>
+<td><div class="color-txt cell" style="color:MediumOrchid" title="MediumOrchid" id="">R</div></td>
+<td><div class="color-txt cell" style="color:DarkOrchid" title="DarkOrchid" id="">R</div></td>
+<td><div class="color-txt cell" style="color:DarkViolet" title="DarkViolet" id="">Y</div></td>
+<td><div class="color-txt cell" style="color:BlueViolet" title="BlueViolet" id="">#</div></td>
+<td><div class="color-txt cell" style="color:DarkMagenta" title="DarkMagenta" id="">S</div></td>
+<td><div class="color-txt cell" style="color:Purple" title="Purple" id="">M</div></td>
+<td><div class="color-txt cell" style="color:MediumPurple" title="MediumPurple" id="">O</div></td>
+<td><div class="color-txt cell" style="color:MediumSlateBlue" title="MediumSlateBlue" id="">O</div></td>
+<td><div class="color-txt cell" style="color:SlateBlue" title="SlateBlue" id="">T</div></td>
+<td><div class="color-txt cell" style="color:DarkSlateBlue" title="DarkSlateBlue" id="">I</div></td>
+<td><div class="color-txt cell" style="color:RebeccaPurple" title="RebeccaPurple" id="">E</div></td>
+<td><div class="color-txt cell" style="color:Indigo" title="Indigo" id="">#</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Red Colors:</td>
+<td><div class="color-txt cell" style="color:LightSalmon" title="LightSalmon" id="">C</div></td>
+<td><div class="color-txt cell" style="color:Salmon" title="Salmon" id="">R</div></td>
+<td><div class="color-txt cell" style="color:DarkSalmon" title="DarkSalmon" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightCoral" title="LightCoral" id="">N</div></td>
+<td><div class="color-txt cell" style="color:IndianRed" title="IndianRed" id="">B</div></td>
+<td><div class="color-txt cell" style="color:Crimson" title="Crimson" id="">E</div></td>
+<td><div class="color-txt cell" style="color:Red" title="Red" id="">R</div></td>
+<td><div class="color-txt cell" style="color:FireBrick" title="FireBrick" id="">R</div></td>
+<td><div class="color-txt cell" style="color:DarkRed" title="DarkRed" id="">Y</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Orange Colors:</td>
+<td><div class="color-txt cell" style="color:Orange" title="Orange" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkOrange" title="DarkOrange" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Coral" title="Coral" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Tomato" title="Tomato" id="">A</div></td>
+<td><div class="color-txt cell" style="color:OrangeRed" title="OrangeRed" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Yellow Colors:</td>
+<td><div class="color-txt cell" style="color:Gold" title="Gold" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Yellow" title="Yellow" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightYellow" title="LightYellow" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LemonChiffon" title="LemonChiffon" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightGoldenRodYellow" title="LightGoldenRodYellow" id="">A</div></td>
+<td><div class="color-txt cell" style="color:PapayaWhip" title="PapayaWhip" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Moccasin" title="Moccasin" id="">A</div></td>
+<td><div class="color-txt cell" style="color:PeachPuff" title="PeachPuff" id="">A</div></td>
+<td><div class="color-txt cell" style="color:PaleGoldenRod" title="PaleGoldenRod" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Khaki" title="Khaki" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkKhaki" title="DarkKhaki" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Green Colors:</td>
+<td><div class="color-txt cell" style="color:GreenYellow" title="GreenYellow" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Chartreuse" title="Chartreuse" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LawnGreen" title="LawnGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Lime" title="Lime" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LimeGreen" title="LimeGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:PaleGreen" title="PaleGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightGreen" title="LightGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MediumSpringGreen" title="MediumSpringGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SpringGreen" title="SpringGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MediumSeaGreen" title="MediumSeaGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SeaGreen" title="SeaGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:ForestGreen" title="ForestGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Green" title="Green" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkGreen" title="DarkGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:YellowGreen" title="YellowGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:OliveDrab" title="OliveDrab" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkOliveGreen" title="DarkOliveGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MediumAquaMarine" title="MediumAquaMarine" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkSeaGreen" title="DarkSeaGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightSeaGreen" title="LightSeaGreen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkCyan" title="DarkCyan" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Teal" title="Teal" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Cyan Colors:</td>
+<td><div class="color-txt cell" style="color:Aqua" title="Aqua" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Cyan" title="Cyan" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightCyan" title="LightCyan" id="">A</div></td>
+<td><div class="color-txt cell" style="color:PaleTurquoise" title="PaleTurquoise" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Aquamarine" title="Aquamarine" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Turquoise" title="Turquoise" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MediumTurquoise" title="MediumTurquoise" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkTurquoise" title="DarkTurquoise" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Blue Colors:</td>
+<td><div class="color-txt cell" style="color:CadetBlue" title="CadetBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SteelBlue" title="SteelBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightSteelBlue" title="LightSteelBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightBlue" title="LightBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:PowderBlue" title="PowderBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightSkyBlue" title="LightSkyBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SkyBlue" title="SkyBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:CornflowerBlue" title="CornflowerBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DeepSkyBlue" title="DeepSkyBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DodgerBlue" title="DodgerBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:RoyalBlue" title="RoyalBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Blue" title="Blue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MediumBlue" title="MediumBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkBlue" title="DarkBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Navy" title="Navy" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MidnightBlue" title="MidnightBlue" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Brown Colors:</td>
+<td><div class="color-txt cell" style="color:Cornsilk" title="Cornsilk" id="">A</div></td>
+<td><div class="color-txt cell" style="color:BlanchedAlmond" title="BlanchedAlmond" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Bisque" title="Bisque" id="">A</div></td>
+<td><div class="color-txt cell" style="color:NavajoWhite" title="NavajoWhite" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Wheat" title="Wheat" id="">A</div></td>
+<td><div class="color-txt cell" style="color:BurlyWood" title="BurlyWood" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Tan" title="Tan" id="">A</div></td>
+<td><div class="color-txt cell" style="color:RosyBrown" title="RosyBrown" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SandyBrown" title="SandyBrown" id="">A</div></td>
+<td><div class="color-txt cell" style="color:GoldenRod" title="GoldenRod" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkGoldenRod" title="DarkGoldenRod" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Peru" title="Peru" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Chocolate" title="Chocolate" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Olive" title="Olive" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SaddleBrown" title="SaddleBrown" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Sienna" title="Sienna" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Brown" title="Brown" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Maroon" title="Maroon" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">White Colors:</td>
+<td><div class="color-txt cell" style="color:White" title="White" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Snow" title="Snow" id="">A</div></td>
+<td><div class="color-txt cell" style="color:HoneyDew" title="HoneyDew" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MintCream" title="MintCream" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Azure" title="Azure" id="">A</div></td>
+<td><div class="color-txt cell" style="color:AliceBlue" title="AliceBlue" id="">A</div></td>
+<td><div class="color-txt cell" style="color:GhostWhite" title="GhostWhite" id="">A</div></td>
+<td><div class="color-txt cell" style="color:WhiteSmoke" title="WhiteSmoke" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SeaShell" title="SeaShell" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Beige" title="Beige" id="">A</div></td>
+<td><div class="color-txt cell" style="color:OldLace" title="OldLace" id="">A</div></td>
+<td><div class="color-txt cell" style="color:FloralWhite" title="FloralWhite" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Ivory" title="Ivory" id="">A</div></td>
+<td><div class="color-txt cell" style="color:AntiqueWhite" title="AntiqueWhite" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Linen" title="Linen" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LavenderBlush" title="LavenderBlush" id="">A</div></td>
+<td><div class="color-txt cell" style="color:MistyRose" title="MistyRose" id="">A</div></td>
+</tr>
+
+<tr><td colspan="4" class="color_category">Grey Colors</td>
+<td><div class="color-txt cell" style="color:Gainsboro" title="Gainsboro" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightGray" title="LightGray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Silver" title="Silver" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkGray" title="DarkGray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DimGray" title="DimGray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Gray" title="Gray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:LightSlateGray" title="LightSlateGray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:SlateGray" title="SlateGray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:DarkSlateGray" title="DarkSlateGray" id="">A</div></td>
+<td><div class="color-txt cell" style="color:Black" title="Black" id="">A</div></td>
+</tr>
+
+
+</table>
+</div>
+
+<br>
+
+<div id="link_color_picker" class="color-table" style="margin-left:10px;margin-top:0px;padding:0px;">
+    <table style="margin-top:0px;">
+	
+<tr>
+<td colspan="20"><h4>Choose a link color:</h4></td></tr>
+<td colspan="12" style="font-size:12px">If you choose "X" links will not get a special color:</td>
+<td><div class="color-link cell" style="background-color: #006064; color: #E0F7FA;" title="teal" id="006064_E0F7FA">L</div></td>
+<td><div class="color-link cell" style="background-color: #B2DFDB; color: #004D40;" title="pale turquoise" id="B2DFDB_004D40">I</div></td>
+<td><div class="color-link cell" style="background-color: steelblue;color:aliceblue;" title="steelblue" id="steelblue_aliceblue_named">N</div></td>
+<td><div class="color-link cell" style="background-color: cornflowerblue;color:white;" title="cornflowerblue" id="cornflowerblue_white_named">K</div></td>
+<td><div class="color-link cell" style="background-color: transparent;" title="same color as regular highlight" id="transparent_none_named">&#x2715;</div></td>
+<td><div class="color-link cell" style="background-color: saddlebrown;color:gold;" title="saddlebrown" id="link_saddlebrown">L</div></td>
+<td><div class="color-link cell" style="background-color: #FFB300; color: #212121;" title="vivid amber" id="FFB300_212121">I</div></td>
+<td><div class="color-link cell" style="background-color: #4CAF50; color: #FFFFFF;" title="green" id="4CAF50_FFFFFF">N</div></td>
+<td><div class="color-link cell" style="background-color: #FF6E40; color: #1A237E;" title="coral" id="FF6E40_1A237E">K</div></td>
+<td><div class="color-link cell" style="background-color: #311B92; color: #D1C4E9;" title="deep purple" id="311B92_D1C4E9">#</div></td>
+<td><div class="color-link cell" style="background-color: #FDD835; color: #424242;" title="yellow gold" id="FDD835_424242">C</div></td>
+<td><div class="color-link cell" style="background-color: #BF360C; color: #FFE0B2;" title="deep orange" id="BF360C_FFE0B2">O</div></td>
+<td><div class="color-link cell" style="background-color: #A8A77A; color: #FFFFFF;" title="olivegreen" id="A8A77A_FFFFFF">L</div></td>
+<td><div class="color-link cell" style="background-color: #0D47A1; color: #BBDEFB;" title="strong blue" id="0D47A1_BBDEFB">O</div></td>
+<td><div class="color-link cell" style="background-color: #F06292; color: #880E4F;" title="pink" id="F06292_880E4F">R</div></td>
+</tr>
+		
+
+		<tr style="display:none">
+		<td><div class="color-link cell" style="background-color: teal; color: #E0F7FA;" title="teal" id="link_teal">L</div></td>
+<td><div class="color-link cell" style="background-color: #FFB300; color: black;" title="vivid_amber" id="link_vivid_amber">i</div></td>
+<td><div class="color-link cell" style="background-color: #B2DFDB; color: teal;" title="pale_turquoise" id="link_pale_turquoise">n</div></td>
+<td><div class="color-link cell" style="background-color: #FF6E40; color: indigo;" title="coral" id="link_coral">k</div></td>
+<td><div class="color-link cell" style="background-color: indigo; color: #D1C4E9;" title="deep_purple" id="link_deep_purple">C</div></td>
+<td><div class="color-link cell" style="background-color: #9C27B0; color: #E1BEE7;" title="purple" id="link_purple">&#x2715;</div></td>
+<td><div class="color-link cell" style="background-color: #FDD835; color: #424242;" title="yellow_gold" id="link_yellow_gold">o</div></td>
+<td><div class="color-link cell" style="background-color: #BF360C; color: #FFE0B2;" title="deep_orange" id="link_deep_orange">o</div></td>
+<td><div class="color-link cell" style="background-color: darkblue; color: #BBDEFB;" title="strong_blue" id="link_strong_blue">r</div></td>
+<td><div class="color-link cell" style="background-color: hotpink; color: #880E4F;" title="pink" id="link_pink">&#x2715;</div></td>
+</tr>
+		
+    </table>
+</div>
+
+<br>
+<table style="margin-left:10px;margin-top:5px;margin-bottom:0px; width:100%">
+<tr>
+<td colspan="2" style="height:33px;"><span style="font-size:12px;">More Options:</span></td>
+</tr>
+<tr><td>
+<button id="mode_toggle" style="align:center; vertical-align:center; background-color: white; height: 30px; width: 140px; color: black; font-size: 15px; cursor: pointer; border-style: solid;border-width:1px;">paragraph mode</button>
+</td>
+		<td>
+		<div style="padding-top:5px;margin-left:15px;vertical-align:center;">app status: <button id="toggle" style="align:center; vertical-align:center; background-color: white; height: 25px; width: 25px; color: black; font-size: 12px; cursor: pointer; border-style: solid;border-width:1px;">&check;</button>
+		</div></td>
+	</tr>
+	<tr><td colspan="2"><br></td></tr>
+	<tr><td colspan="2"><div style="text-align:center;"><a href="">>How To Highlight Text<</a></div></td></tr>
+</table>
+  </body>
+  <script src="popup.js"></script>
+</html>

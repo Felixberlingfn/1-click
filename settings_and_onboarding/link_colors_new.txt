@@ -1,0 +1,64 @@
+--licorice: #220c10ff;w
+--feldgrau: #506c64ff;b
+--tiffany-blue: #77cbb9ff;b
+--moonstone: #75b8c8ff;b
+--silver: #cdd3d5ff;b
+
+--pearl: #ddd8b8ff;b
+--ash-gray: #b3cbb9ff;b
+--air-superiority-blue: #84a9c0ff;b
+--ultra-violet: #6a66a3ff;w
+--eminence: #542e71ff;w
+
+
+--puce: #d496a7ff;b
+--redwood: #9d695aff;w
+--tiffany-blue: #78e0dcff;b
+--electric-blue: #8eedf7ff;b
+--light-sky-blue: #a1cdf1ff;b
+
+
+--wenge: #604d53ff;w
+--puce: #db7f8eff;w
+--misty-rose: #ffdbdaff;b
+
+--vista-blue: #91a6ffff;b
+--persian-pink: #ff88dcff;b
+--icterine: #faff7fff;b
+--white: #ffffffff;b
+--bittersweet: #ff5154ff;w
+
+--licorice: #130303ff;w
+--black-bean: #2d080aff;w
+--burnt-umber: #7c3626ff;w
+--pumpkin: #f5853fff;w
+--pale-dogwood: #ffcdbcff;b
+
+--lapis-lazuli: #2f6690ff;w
+--cerulean: #3a7ca5ff;w
+--platinum: #d9dcd6ff;b
+--indigo-dye: #16425bff;w
+--sky-blue: #81c3d7ff;b
+
+--aquamarine: #44ffd2ff;b
+--electric-blue: #87f6ffff;b
+--light-cyan: #daf5ffff;b
+--peach: #ffbfa0ff;b
+
+--orange-pantone: #fb6107ff;w
+--citrine: #f3de2cff;b
+--apple-green: #7cb518ff;w
+--avocado: #5c8001ff;w
+--xanthous: #fbb02dff;b
+
+--hookers-green: #668586ff;w
+--verdigris: #82aeb1ff;b
+--sky-blue: #93c6d6ff;b
+--periwinkle: #a7acd9ff;b
+--rose-quartz: #9e8fb2ff;w
+
+--nyanza: #e5ffdeff;b
+--ash-gray: #bbcbcbff;b
+--cool-gray: #9590a8ff;w
+--english-violet: #634b66ff;w
+--licorice: #18020cff;w

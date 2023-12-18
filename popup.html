@@ -1,0 +1,326 @@
+<html lang="en">
+  <head>
+    <style id="main_styles">
+		body {
+			width: 380px;
+			height: 600px;
+			background-color:WhiteSmoke;
+			padding-top:0px;
+			margin-top:0px;
+		}
+		.standard_font {
+			font-size:10px;
+		}
+		.cell {
+			width: 30px;
+			height: 30px;
+			cursor: pointer;
+			border-style:solid;
+			border-width:2px;
+			border-color:WhiteSmoke;
+			
+			font-size:16px;
+			text-align:center;
+			vertical-align:middle;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		.color-cell {
+			font-weight: bold;
+		}
+		.color-txt {
+			font-weight: bold;
+		}
+		.color-link {
+			font-weight: bold;
+		}
+
+	  h3 {
+	  background-color:yellow;
+	  margin-bottom:0;
+	  padding-bottom:0;
+	  font-size: 16px;
+	  }
+	  .selected_bg {
+	  border-color: #007aff;
+	  border-style:solid;
+	  border-width:2px;
+	  }
+
+	  .selected_txt {
+	  border-color: #007aff;
+	  border-style:solid;
+	  border-width:2px;
+	  }
+	  
+	  .selected_link {
+	  border-color: #007aff;
+	  border-style:solid;
+	  border-width:2px;
+	  }
+
+	  table {
+	  border-collapse: collapse;
+	  border-spacing:0;
+	  	     padding: 0;
+		 margin: 0;
+	  }
+	  td {
+	     padding: 0;
+		 margin: 0;
+	  }
+	  /* Link styles */
+	a {
+		color: darkslategrey; /* dark greyish-blue */
+		text-decoration: none; /* no underline */
+		transition: color 0.3s ease; /* smooth color transition */
+	}
+
+	a:hover {
+		color: teal; /* brighter greyish-blue on hover */
+	}
+    </style>
+	<style id="key_styles">
+
+        .keyboard-selection {
+            display: flex;
+            gap: 6px;  /* Reduced gap between keys */
+        }
+
+        .key {
+            background-color: #ffffff;
+            padding: 6px 12px;  /* Reduced padding to make the keys smaller */
+            border: 1px solid #d0d0d0;  /* Reduced border thickness */
+            border-radius: 4px;  /* Adjusted the border-radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;  /* Reduced font size */
+        }
+
+        .key.no-modifier {
+            color: red;
+        }
+
+        .key:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .key:active {
+            background-color: #d0d0d0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transform: translateY(1px);
+        }
+		.key.selected_key {
+            background-color: #cce4ff;  /* Light blue background */
+            border-color: #007aff;  /* Blue border */
+            box-shadow: 0 0 0 2px #007aff;  /* Blue glowing effect */
+        }
+    </style>
+	<style id="mode_styles">
+	mark {
+		background-color: gold;
+		color: black;
+	}
+	.mode-selection {
+		display: flex;
+		gap: 3px;  /* gap between keys */
+	}
+	
+	.key_blue.active {
+		background-color: #cce4ff;  /* Light blue background */
+		border-color: #007aff;  /* Blue border */
+		box-shadow: 0 0 0 1px #007aff;  /* Blue glowing effect */
+	}
+	</style>
+  </head>
+  <body style="margin: 0px; padding: 0px;">
+  <h3 id="extension_title" style="margin-bottom:5px;padding-left:10px;padding-top:10px;padding-bottom:10px;">1 Click Text Marker Settings</h3>
+    <div id="color_picker" class="color-table" style="margin-left:10px;margin-top:0px;padding:0px;">
+
+	<!-- change highlighting color -->
+<table style="border-collapse:collapse;margin:0px;" id="color_box_selection">
+	<tr style="display:none;">
+		<td colspan="7" style="color:black">Choose a highlighting key:</td>
+		<td colspan="3"><span id="key_message" style="color:darkgreen; font-size:10px;visibility:;">* Alt, 1, C, T or M</span><span id="key_warning" style="color:crimson; font-size:10px;display:none;">* no key required</span></td>
+	</tr>
+	<tr style="display:none;">
+	<td colspan="10" style="height:60px;" >
+	    <div class="keyboard-selection" id="modifier_selector">
+			<button class="key" id="Alt_key" data-key="Alt">Alt</button>
+			<button class="key" id="1_key" data-key="1">1</button>
+			<button class="key" id="c_key" data-key="c">C</button>
+			<button class="key" id="t_key" data-key="t">T</button>
+			<button class="key" id="m_key" data-key="m">M</button>
+			<button class="key selected_key" id="any_key" data-key="any">Any</button>
+			<button class="key no-modifier" id="false_key" data-key="none">none</button>
+		</div>
+	</td>
+	</tr>
+	
+	<tr><td colspan="9"><span style="color:black">Choose a highlighting color:</span></td>
+		<td><div class="color-cell cell" style="background-color: transparent" title="transparent" id="transparent">&#x2715;</div></td>
+	</tr>
+	<tr>
+		<td><div class="color-cell cell" style="background-color: DarkRed;" title="DarkRed" id="DarkRed">T</div></td>
+		<td><div class="color-cell cell" style="background-color: crimson;" title="crimson" id="crimson">E</div></td>
+		<td><div class="color-cell cell" style="background-color: red;" title="red" id="red">X</div></td>
+		<td><div class="color-cell cell" style="background-color: tomato;" title="tomato" id="tomato">T</div></td>
+		<td><div class="color-cell cell" style="background-color: orangered;" title="orangered" id="orangered">M</div></td>
+		<td><div class="color-cell cell" style="background-color: coral;" title="coral" id="coral">A</div></td>
+		<td><div class="color-cell cell" style="background-color: orange;" title="orange" id="orange">R</div></td>		
+		<td><div class="color-cell cell" style="background-color: sandybrown;" title="sandybrown" id="sandybrown">K</div></td>
+		<td><div class="color-cell cell" style="background-color: goldenrod;" title="goldenrod" id="gold">E</div></td>
+		<td><div class="color-cell cell" style="background-color: Chocolate;" title="Chocolate" id="Chocolate">R</div></td>
+	</tr>
+	<tr>
+		<td><div class="color-cell cell" style="background-color: gold;" title="gold" id="gold">B</div></td>
+		<td><div class="color-cell cell" style="background-color: yellow;" title="yellow" id="yellow">A</div></td>
+		<td><div class="color-cell cell" style="background-color: greenyellow;" title="greenyellow" id="greenyellow">C</div></td>
+		<td><div class="color-cell cell" style="background-color: chartreuse;" title="chartreuse" id="chartreuse">K</div></td>
+		<td><div class="color-cell cell" style="background-color: lime;" title="lime" id="lime">G</div></td>
+		<td><div class="color-cell cell" style="background-color: lightgreen;" title="lightgreen" id="green">R</div></td>
+		<td><div class="color-cell cell" style="background-color: YellowGreen" title="YellowGreen" id="YellowGreen">O</div></td>
+		<td><div class="color-cell cell" style="background-color: forestgreen;" title="forestgreen" id="green">U</div></td>
+		<td><div class="color-cell cell" style="background-color: SeaGreen;" title="SeaGreen" id="SeaGreen">N</div></td>
+		<td><div class="color-cell cell" style="background-color: darkgreen;" title="darkgreen" id="darkgreen">D</div></td>
+
+	</tr>
+	<tr>
+		<td><div class="color-cell cell" style="background-color: mediumspringgreen;" title="mediumspringgreen" id="mediumspringgreen">C</div></td>
+		<td><div class="color-cell cell" style="background-color: springgreen;" title="springgreen" id="springgreen">O</div></td>
+		<td><div class="color-cell cell" style="background-color: turquoise;" title="turquoise" id="turquoise">L</div></td>
+		<td><div class="color-cell cell" style="background-color: aquamarine;" title="aquamarine" id="aquamarine">O</div></td>
+		<td><div class="color-cell cell" style="background-color: aqua;" title="aqua" id="aqua">R</div></td>
+		<td><div class="color-cell cell" style="background-color: cornflowerblue;" title="cornflowerblue" id="cornflowerblue">C</div></td>
+		<td><div class="color-cell cell" style="background-color: deepskyblue;" title="deepskyblue" id="deepskyblue">O</div></td>
+		<td><div class="color-cell cell" style="background-color: blue;" title="blue" id="blue">L</div></td>
+		<td><div class="color-cell cell" style="background-color: RoyalBlue;" title="RoyalBlue" id="RoyalBlue">O</div></td>		
+		<td><div class="color-cell cell" style="background-color: MidnightBlue;" title="MidnightBlue" id="MidnightBlue">R</div></td>
+	</tr>
+	<tr>
+		<td><div class="color-cell cell" style="background-color: indigo;" title="indigo" id="indigo">H</div></td>
+		<td><div class="color-cell cell" style="background-color: BlueViolet" title="BlueViolet" id="BlueViolet">I</div></td>
+		<td><div class="color-cell cell" style="background-color: purple;" title="purple" id="purple">G</div></td>
+		<td><div class="color-cell cell" style="background-color: mediumpurple;" title="mediumpurple" id="mediumpurple">H</div></td>
+		<td><div class="color-cell cell" style="background-color: violet;" title="violet" id="violet">L</div></td>
+		<td><div class="color-cell cell" style="background-color: mediumvioletred;" title="mediumvioletred" id="mediumvioletred">I</div></td>
+		<td><div class="color-cell cell" style="background-color: deeppink;" title="deeppink" id="deeppink">G</div></td>
+		<td><div class="color-cell cell" style="background-color: magenta;" title="magenta" id="magenta">H</div></td>
+		<td><div class="color-cell cell" style="background-color: hotpink;" title="hotpink" id="hotpink">T</div></td>
+		<td><a href="settings_and_onboarding/settings0_main.html?s=settings2_background"><div class="cell" style="" title="lightseagreen" id="show_more_background_colors">...</div></a></td>
+	</tr>
+	<tr style="display:none;">
+		<td><div class="color-cell cell" style="background-color: darkslategrey;" title="darkslategrey" id="darkslategrey">H</div></td>
+		<td><div class="color-cell cell" style="background-color: olivedrab;" title="olivedrab" id="olivedrab">I</div></td>
+		<td><div class="color-cell cell" style="background-color: steelblue;" title="steelblue" id="steelblue">G</div></td>
+		<td><div class="color-cell cell" style="background-color: DarkOrange;" title="DarkOrange" id="DarkOrange">H</div></td>
+		<td><div class="color-cell cell" style="background-color: FireBrick;" title="FireBrick" id="FireBrick">L</div></td>
+		<td><div class="color-cell cell" style="background-color: IndianRed;" title="IndianRed" id="IndianRed">I</div></td>
+		<td><div class="color-cell cell" style="background-color: teal;" title="teal" id="teal">G</div></td>
+		<td><div class="color-cell cell" style="background-color: saddlebrown;" title="saddlebrown" id="saddlebrown">H</div></td>
+		<td><div class="color-cell cell" style="background-color: lightseagreen;" title="lightseagreen" id="lightseagreen">T</div></td>
+		<td><a href="settings_and_onboarding/settings0_main.html?s=settings2_background"><div class="cell" style="" title="lightseagreen" id="show_more_background_colors">...</div></a></td>
+	</tr>
+</table></div>
+
+<br>
+<div id="txt_picker" class="color-table" style="margin-left:10px;margin-top:0px;padding:0px;">
+<table style="margin-top:0px;">
+	<tr><td colspan="4" style="width:137px" ><a href="#" id="toggle_show_txt" title="click for more options" style="font-size:12px;"><span id="show_hide_text_1" style="display:none;">&#9654;</span> Text color:</a></td>
+	    <td><div class="color-txt cell" style="color:red;" title="red" id="txt_red">T</div></td>
+    <td><div class="color-txt cell" style="color:green;" title="green" id="txt_green">E</div></td>
+	<td><div class="color-txt cell" style="color:black;" title="black" id="txt_black">X</div></td>
+	<td><div class="color-txt cell" style="color:white;" title="white" id="txt_white">T</div></td>
+	<td style="display:none;"><div class="color-txt cell" style="color:;" title="original" id="txt_transparent">&#x2715;</div></td>
+	<td><a href="settings_and_onboarding/settings0_main.html?s=settings3_text"><div class="cell">...</div></a></td>
+	</tr>
+<tr style="display:none;" id="hidden_txt_row">
+	<td><div class="color-txt cell" style="color:gold;" title="gold" id="txt_gold">T</div></td>
+	<td><div class="color-txt cell" style="color:lime;" title="lime" id="txt_lime">E</div></td>
+	<td><div class="color-txt cell" style="color:green;" title="green" id="txt_green">X</div></td>
+    <td><div class="color-txt cell" style="color:black;" title="black" id="txt_black">T</div></td>
+    <td><div class="color-txt cell" style="color:blue;" title="blue" id="txt_blue">#</div></td>
+    <td><div class="color-txt cell" style="color:magenta;" title="magenta" id="txt_magenta">C</div></td>
+    <td><div class="color-txt cell" style="color:darkblue;" title="darkblue" id="txt_darkblue">O</div></td>
+	<td><div class="color-txt cell" style="color:orange;" title="orange" id="txt_orange">L</div></td>
+	<td><div class="color-txt cell" style="color:red;" title="red" id="txt_red">O</div></td>
+	<td><div class="color-txt cell" style="color:deeppink;" title="deeppink" id="txt_deeppink">R</div></td>
+</tr>
+</table>
+</div>
+
+<br>
+
+<div id="link_color_picker" class="color-table" style="margin-left:10px;margin-top:0px;padding:0px;">
+    <table style="margin-top:0px;">
+        <tr><td colspan="4" style="width:137px" ><a href="#" id="toggle_show_link" style="font-size:12px;"><span id="show_hide_link_1" style="display:none;">&#9654;</span>Optional Link color:</a></td>
+		<td><div class="color-link cell" style="background-color: #006064; color: #E0F7FA;" title="teal" id="006064_E0F7FA">L</div></td>
+		<td><div class="color-link cell" style="background-color: #B2DFDB; color: #004D40;" title="pale turquoise" id="B2DFDB_004D40">I</div></td>
+		<td><div class="color-link cell" style="background-color: steelblue;color:aliceblue;" title="steelblue" id="4682B4_F0F8FF">N</div></td>
+		<td><div class="color-link cell" style="background-color: cornflowerblue;color:white;" title="cornflowerblue" id="6495ED_FFFFFF">K</div></td>
+		<td><div class="color-link cell" style="background-color: transparent;" title="same color as regular highlight" id="transparent_none">&#x2715;</div></td>
+		<td><a href="settings_and_onboarding/settings0_main.html?s=settings4_link"><div class="cell">...</div></a></td>
+		</tr>
+		
+				<tr style="display:none;" id="hidden_link_row">
+<td><div class="color-link cell" style="background-color: saddlebrown;color:gold;" title="saddlebrown" id="8B4513_FFD700">L</div></td>
+<td><div class="color-link cell" style="background-color: #FFB300; color: #212121;" title="vivid amber" id="FFB300_212121">I</div></td>
+<td><div class="color-link cell" style="background-color: #4CAF50; color: #FFFFFF;" title="green" id="4CAF50_FFFFFF">N</div></td>
+<td><div class="color-link cell" style="background-color: #FF6E40; color: #1A237E;" title="coral" id="FF6E40_1A237E">K</div></td>
+<td><div class="color-link cell" style="background-color: #311B92; color: #D1C4E9;" title="deep purple" id="311B92_D1C4E9">#</div></td>
+<td><div class="color-link cell" style="background-color: #FDD835; color: #424242;" title="yellow gold" id="FDD835_424242">C</div></td>
+<td><div class="color-link cell" style="background-color: #BF360C; color: #FFE0B2;" title="deep orange" id="BF360C_FFE0B2">O</div></td>
+<td><div class="color-link cell" style="background-color: #A8A77A; color: #FFFFFF;" title="olivegreen" id="A8A77A_FFFFFF">L</div></td>
+<td><div class="color-link cell" style="background-color: #0D47A1; color: #BBDEFB;" title="strong blue" id="0D47A1_BBDEFB">O</div></td>
+<td><div class="color-link cell" style="background-color: #F06292; color: #880E4F;" title="pink" id="F06292_880E4F">R</div></td>
+
+		</tr>
+    </table>
+</div>
+
+<br>
+<table style="margin-left:10px;margin-top:5px;margin-bottom:0px; width:100%">
+<tr>
+<td colspan="2" style="height:33px;"><span style="font-size:12px;">Choose Mode for Click to Highlight:</span></td>
+</tr>
+<tr><td colspan="2">
+
+<!-- Start Mode Settings -->
+
+
+			<div class="mode-selection">
+			
+			<button id="mode_toggle" class="btn-mode_toggle word key key_blue"><mark>&nbsp;word&nbsp;</mark>mode</button>
+			
+			<button id="mode_toggle_2" class="btn-mode_toggle phrase key key_blue">Phrase mode, <mark>this will be highlighted</mark>.</button>
+			
+			</div>
+
+
+<!-- End Mode Settings -->
+
+</td>
+</tr>
+<tr>
+		<td colspan="2"><br>
+		<div style="padding-top:5px;margin-left:15px;vertical-align:center;font-size:12px;">Activate/Deactivate the extension: &nbsp;&nbsp;<button id="toggle" style="align:center; vertical-align:center; background-color: white; height: 25px; width: 25px; color: black; font-size: 12px; cursor: pointer; border-style: solid;border-width:1px;">&check;</button>
+		</div></td>
+	</tr>
+	<tr><td colspan="2"><br></td></tr>
+	<tr><td colspan="2"><div style="text-align:left;" class="standard_font;"><a href="settings_and_onboarding/settings0_main.html?s=settings1_modifier" style="font-size:12px;">How To Highlight Text:</a></div>
+	<br>
+	</td></tr>
+	
+	<tr>	
+	<td colspan="1"><img src="alt_select_new.JPG" style="width: 150px"></td>
+	<td colspan="1"><img src="alt_click_new.JPG" style="width: 170px"></td>
+	</tr>
+	
+</table>
+  </body>
+  <script src="popup.js"></script>
+</html>

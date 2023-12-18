@@ -1,0 +1,43 @@
+.keyboard-selection {
+	display: flex;
+	gap: 8px; /* Reduced gap between keys */
+	background-color: silver; /* Changed to lighter grey */
+	font-family: 'San Francisco', Arial, sans-serif; /* Apple-like font */
+	padding:8px;
+	border-radius: 6px; /* This adds rounded corners */
+}
+
+.key {
+	background-color: #ffffff;
+	padding: 10px 14px; /* Adjusted padding */
+	border: 1px solid #333333; /* Lighter border */
+	border-radius: 6px; /* Softer corners */
+	box-shadow: 0 1px 3px #333333; /* Softer shadow */
+	cursor: pointer;
+	transition: all 0.3s;
+	font-size: 18px; /* Reduced font size */
+}
+
+.selected_key, .key.active {
+	background-color: #e6e6e6; /* Changed to light grey */
+	border-color: #007aff;
+	box-shadow: 0 1px 3px #007aff; /* Softer shadow */
+}
+
+.key.no-modifier {
+	color: red;
+}
+
+.key:hover {
+	background-color: #f0f0f0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Softer shadow */
+}
+
+.key:active {
+	background-color: #d0d0d0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Softer shadow */
+	transform: translateY(1px);
+}
+
+
+/*-------------------------------------*/
